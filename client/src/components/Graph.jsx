@@ -1,6 +1,7 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
+import Label from './Label';
 
 Chart.register(ArcElement);
 
@@ -37,7 +38,9 @@ const Graph = () => {
 						Total <span className='block text-3xl text-emerald-400'>￥{0}</span>
 					</h3>
 				</div>
-				<div className='flex flex-col py-10 gap-4'>Labels</div>
+				<div className='flex flex-col py-10 gap-4'>
+					<Label></Label>
+				</div>
 			</div>
 		</div>
 	);
