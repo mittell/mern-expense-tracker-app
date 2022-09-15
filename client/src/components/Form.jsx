@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import History from './History';
 
 const Form = () => {
 	const { register, handleSubmit, resetField } = useForm();
@@ -43,6 +44,7 @@ const Form = () => {
 					</div>
 				</div>
 			</form>
+			<History />
 		</div>
 	);
 };
