@@ -41,7 +41,7 @@ const Label = () => {
 	return (
 		<>
 			{obj.map((value, index) => (
-				<LabelComponent key={index} data={value}></LabelComponent>
+				<LabelComponent key={index} data={value} />
 			))}
 		</>
 	);

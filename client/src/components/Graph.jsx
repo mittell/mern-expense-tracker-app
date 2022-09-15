@@ -5,8 +5,6 @@ import Label from './Label';
 
 Chart.register(ArcElement);
 
-const data = {};
-
 const config = {
 	data: {
 		datasets: [
@@ -39,7 +37,7 @@ const Graph = () => {
 					</h3>
 				</div>
 				<div className='flex flex-col py-10 gap-4'>
-					<Label></Label>
+					<Label />
 				</div>
 			</div>
 		</div>
