@@ -16,6 +16,10 @@ Make use Node.js is installed, and npm is up to date:
 
     npm@latest -g
 
+Install the required Node Packages:
+
+    npm install
+
 Run and debug the application with the dev script:
 
     npm run dev
