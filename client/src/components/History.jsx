@@ -2,21 +2,6 @@ import React from 'react';
 import 'boxicons';
 import { default as api } from '../store/apiSlice';
 
-// const obj = [
-// 	{
-// 		name: 'Savings',
-// 		color: 'rgb(255,99,132)',
-// 	},
-// 	{
-// 		name: 'Investment',
-// 		color: 'rgb(54,162,235)',
-// 	},
-// 	{
-// 		name: 'Expense',
-// 		color: 'rgb(255,205,86)',
-// 	},
-// ];
-
 const Transaction = ({ category, handler }) => {
 	if (!category) {
 		return null;

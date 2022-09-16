@@ -2,24 +2,6 @@ import React from 'react';
 import { default as api } from '../store/apiSlice';
 import { getLabels } from '../helper/helper';
 
-// const obj = [
-// 	{
-// 		type: 'Savings',
-// 		color: 'rgb(255,99,132)',
-// 		percent: 45,
-// 	},
-// 	{
-// 		type: 'Investment',
-// 		color: 'rgb(54,162,235)',
-// 		percent: 20,
-// 	},
-// 	{
-// 		type: 'Expense',
-// 		color: 'rgb(255,205,86)',
-// 		percent: 10,
-// 	},
-// ];
-
 const LabelComponent = ({ data }) => {
 	if (!data) {
 		return <></>;
