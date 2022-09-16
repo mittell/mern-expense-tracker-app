@@ -8,6 +8,26 @@ export const apiSlice = createApi({
 		getCategories: builder.query({
 			query: () => '/api/categories',
 		}),
+		getLabels: builder.query({
+			query: () => '/api/labels',
+		}),
+		getTransactions: builder.query({
+			query: () => '/api/transactions',
+		}),
+		addTransaction: builder.mutation({
+			query: (initialTransaction) => ({
+				url: '/api/transactions',
+				method: 'POST',
+				body: initialTransaction,
+			}),
+		}),
+		deleteTransaction: builder.mutation({
+			query: (transactionId) => ({
+				url: '/api/transactions',
+				method: 'DELETE',
+				body: transactionId,
+			}),
+		}),
 	}),
 });
 
