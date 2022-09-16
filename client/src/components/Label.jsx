@@ -1,22 +1,23 @@
 import React from 'react';
+import { default as api } from '../store/apiSlice';
 
-const obj = [
-	{
-		type: 'Savings',
-		color: 'rgb(255,99,132)',
-		percent: 45,
-	},
-	{
-		type: 'Investment',
-		color: 'rgb(54,162,235)',
-		percent: 20,
-	},
-	{
-		type: 'Expense',
-		color: 'rgb(255,205,86)',
-		percent: 10,
-	},
-];
+// const obj = [
+// 	{
+// 		type: 'Savings',
+// 		color: 'rgb(255,99,132)',
+// 		percent: 45,
+// 	},
+// 	{
+// 		type: 'Investment',
+// 		color: 'rgb(54,162,235)',
+// 		percent: 20,
+// 	},
+// 	{
+// 		type: 'Expense',
+// 		color: 'rgb(255,205,86)',
+// 		percent: 10,
+// 	},
+// ];
 
 const LabelComponent = ({ data }) => {
 	if (!data) {
@@ -38,13 +39,21 @@ const LabelComponent = ({ data }) => {
 };
 
 const Label = () => {
-	return (
-		<>
-			{obj.map((value, index) => (
-				<LabelComponent key={index} data={value} />
-			))}
-		</>
-	);
+	const { data, isFetching, isSuccess, isError } = api.useGetLabelsQuery();
+
+	let Transactions;
+
+	if (isFetching) {
+		Transactions = <div>Fetching...</div>;
+	} else if (isSuccess) {
+		Transactions = data.map((value, index) => (
+			<LabelComponent key={index} data={value} />
+		));
+	} else if (isError) {
+		Transactions = <div>Error</div>;
+	}
+
+	return <>{Transactions}</>;
 };
 
 export default Label;
