@@ -1,5 +1,6 @@
 import React from 'react';
 import { default as api } from '../store/apiSlice';
+import { getLabels } from '../helper/helper';
 
 // const obj = [
 // 	{
@@ -33,7 +34,7 @@ const LabelComponent = ({ data }) => {
 				></div>
 				<h3 className='text-md'>{data.type ?? ''}</h3>
 			</div>
-			<h3 className='font-bold'>{data.percent ?? 0}%</h3>
+			<h3 className='font-bold'>{Math.round(data.percent) ?? 0}%</h3>
 		</div>
 	);
 };
@@ -46,7 +47,7 @@ const Label = () => {
 	if (isFetching) {
 		Labels = <div>Fetching...</div>;
 	} else if (isSuccess) {
-		Labels = data.map((value, index) => (
+		Labels = getLabels(data, 'type').map((value, index) => (
 			<LabelComponent key={index} data={value} />
 		));
 	} else if (isError) {
