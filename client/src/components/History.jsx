@@ -17,7 +17,7 @@ import { default as api } from '../store/apiSlice';
 // 	},
 // ];
 
-const Transaction = ({ category }) => {
+const Transaction = ({ category, handler }) => {
 	if (!category) {
 		return null;
 	}
@@ -26,11 +26,12 @@ const Transaction = ({ category }) => {
 			className='item flex justify-center bg-gray-50 py-2 rounded-r'
 			style={{ borderRight: `8px solid ${category.color ?? '#e5e5e5'}` }}
 		>
-			<button className='px-3'>
+			<button className='px-3' onClick={handler}>
 				<box-icon
 					name='trash'
 					size='25px'
 					color={category.color ?? '#e5e5e5'}
+					data-id={category._id ?? ''}
 				></box-icon>
 			</button>
 			<span className='block w-full m-1'>{category.name ?? ''}</span>
@@ -40,6 +41,17 @@ const Transaction = ({ category }) => {
 
 const History = () => {
 	const { data, isFetching, isSuccess, isError } = api.useGetLabelsQuery();
+	const [deleteTransaction] = api.useDeleteTransactionMutation();
+
+	const handlerClick = (e) => {
+		const id = e.target.dataset.id;
+
+		if (!id) {
+			return 0;
+		}
+
+		deleteTransaction({ _id: id });
+	};
 
 	let Transactions;
 
@@ -47,7 +59,7 @@ const History = () => {
 		Transactions = <div>Fetching...</div>;
 	} else if (isSuccess) {
 		Transactions = data.map((value, index) => (
-			<Transaction category={value} key={index} />
+			<Transaction category={value} key={index} handler={handlerClick} />
 		));
 	} else if (isError) {
 		Transactions = <div>Error</div>;
