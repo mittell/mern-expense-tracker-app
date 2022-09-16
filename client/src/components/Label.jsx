@@ -41,19 +41,19 @@ const LabelComponent = ({ data }) => {
 const Label = () => {
 	const { data, isFetching, isSuccess, isError } = api.useGetLabelsQuery();
 
-	let Transactions;
+	let Labels;
 
 	if (isFetching) {
-		Transactions = <div>Fetching...</div>;
+		Labels = <div>Fetching...</div>;
 	} else if (isSuccess) {
-		Transactions = data.map((value, index) => (
+		Labels = data.map((value, index) => (
 			<LabelComponent key={index} data={value} />
 		));
 	} else if (isError) {
-		Transactions = <div>Error</div>;
+		Labels = <div>Error</div>;
 	}
 
-	return <>{Transactions}</>;
+	return <>{Labels}</>;
 };
 
 export default Label;
