@@ -67,9 +67,11 @@ const deleteTransaction = async (req, res) => {
 		if (!err) {
 			return res.json('Record deleted!');
 		}
-	}).catch((err) => {
-		res.json('Error while deleting Transaction!');
-	});
+	})
+		.clone()
+		.catch((err) => {
+			res.json('Error while deleting Transaction!');
+		});
 };
 
 const getLabels = async (req, res) => {
