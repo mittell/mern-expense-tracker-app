@@ -7,9 +7,11 @@ export const apiSlice = createApi({
 	endpoints: (builder) => ({
 		getCategories: builder.query({
 			query: () => '/api/categories',
+			providesTags: ['categories'],
 		}),
 		getLabels: builder.query({
 			query: () => '/api/labels',
+			providesTags: ['transactions'],
 		}),
 		getTransactions: builder.query({
 			query: () => '/api/transactions',
@@ -20,6 +22,7 @@ export const apiSlice = createApi({
 				method: 'POST',
 				body: initialTransaction,
 			}),
+			invalidatesTags: ['transactions'],
 		}),
 		deleteTransaction: builder.mutation({
 			query: (transactionId) => ({
@@ -27,6 +30,7 @@ export const apiSlice = createApi({
 				method: 'DELETE',
 				body: transactionId,
 			}),
+			invalidatesTags: ['transactions'],
 		}),
 	}),
 });
