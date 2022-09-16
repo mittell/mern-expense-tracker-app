@@ -2,6 +2,8 @@ import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
 import Label from './Label';
+import { default as api } from '../store/apiSlice';
+import { chartData } from '../helper/helper';
 
 Chart.register(ArcElement);
 
@@ -27,11 +29,23 @@ const config = {
 };
 
 const Graph = () => {
+	const { data, isFetching, isSuccess, isError } = api.useGetLabelsQuery();
+
+	let GraphData;
+
+	if (isFetching) {
+		GraphData = <div>Fetching...</div>;
+	} else if (isSuccess) {
+		GraphData = <Doughnut {...chartData(data)} />;
+	} else if (isError) {
+		GraphData = <div>Error</div>;
+	}
+
 	return (
 		<div className='flex justify-center max-w-xs mx-auto'>
 			<div className='item'>
 				<div className='chart relative'>
-					<Doughnut {...config} />
+					{GraphData}
 					<h3 className='mb-4 font-bold title'>
 						Total <span className='block text-3xl text-emerald-400'>￥{0}</span>
 					</h3>

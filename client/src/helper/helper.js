@@ -29,3 +29,29 @@ export const getLabels = (transactions) => {
 
 	return percent;
 };
+
+export const chartData = (transactions, custom) => {
+	let dataValue = getSum(transactions);
+
+	let bg = _.map(transactions, (a) => a.color);
+	bg = _.uniq(bg);
+
+	const config = {
+		data: {
+			datasets: [
+				{
+					data: dataValue,
+					backgroundColor: bg,
+					hoverOffset: 4,
+					borderRadius: 30,
+					spacing: 10,
+				},
+			],
+		},
+		options: {
+			cutout: 115,
+		},
+	};
+
+	return custom ?? config;
+};
