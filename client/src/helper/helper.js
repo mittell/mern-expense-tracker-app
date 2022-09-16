@@ -55,3 +55,7 @@ export const chartData = (transactions, custom) => {
 
 	return custom ?? config;
 };
+
+export const getTotal = (transactions) => {
+	return _.sum(getSum(transactions));
+};

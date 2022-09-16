@@ -3,30 +3,30 @@ import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
 import Label from './Label';
 import { default as api } from '../store/apiSlice';
-import { chartData } from '../helper/helper';
+import { chartData, getTotal } from '../helper/helper';
 
 Chart.register(ArcElement);
 
-const config = {
-	data: {
-		datasets: [
-			{
-				data: [300, 50, 100],
-				backgroundColor: [
-					'rgb(255, 99, 132)',
-					'rgb(54, 162, 235)',
-					'rgb(255, 205, 86)',
-				],
-				hoverOffset: 4,
-				borderRadius: 30,
-				spacing: 10,
-			},
-		],
-	},
-	options: {
-		cutout: 115,
-	},
-};
+// const config = {
+// 	data: {
+// 		datasets: [
+// 			{
+// 				data: [300, 50, 100],
+// 				backgroundColor: [
+// 					'rgb(255, 99, 132)',
+// 					'rgb(54, 162, 235)',
+// 					'rgb(255, 205, 86)',
+// 				],
+// 				hoverOffset: 4,
+// 				borderRadius: 30,
+// 				spacing: 10,
+// 			},
+// 		],
+// 	},
+// 	options: {
+// 		cutout: 115,
+// 	},
+// };
 
 const Graph = () => {
 	const { data, isFetching, isSuccess, isError } = api.useGetLabelsQuery();
@@ -47,7 +47,10 @@ const Graph = () => {
 				<div className='chart relative'>
 					{GraphData}
 					<h3 className='mb-4 font-bold title'>
-						Total <span className='block text-3xl text-emerald-400'>￥{0}</span>
+						Total{' '}
+						<span className='block text-3xl text-emerald-400'>
+							￥{getTotal(data) ?? 0}
+						</span>
 					</h3>
 				</div>
 				<div className='flex flex-col py-10 gap-4'>
