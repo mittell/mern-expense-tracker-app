@@ -8,7 +8,13 @@ const Form = () => {
 	const [addTransaction] = api.useAddTransactionMutation();
 
 	const onSubmit = async (data) => {
-		if (!data) {
+		if (data.name === '') {
+			alert('Please enter a valid Transaction description.');
+			return;
+		}
+
+		if (data.amount === '') {
+			alert('Please enter a valid Amount.');
 			return;
 		}
 
@@ -43,6 +49,7 @@ const Form = () => {
 							type='number'
 							placeholder='Amount'
 							className='form-input'
+							min='0'
 							{...register('amount')}
 						/>
 					</div>
