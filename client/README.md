@@ -2,10 +2,6 @@
 
 An Expense Tracker App, built with React, Node, Express and MongoDB.
 
-## Demo
-
-[Link]()
-
 ## Getting Started
 
 Clone this repo, and make sure to run the commands mentioned below from your terminal within the root project directory.
